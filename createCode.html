@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二维码生成器</title>
+    <script src="jquery.js"></script>
+    <style>
+        p{
+            margin-top: 50px;
+        }
+        input{
+            width:350px;
+            height: 30px;
+            padding-left: 15px;
+            border:none;
+            border-bottom: 1px solid lightgray;
+            font-size: 18px;
+        }
+        select{
+            width:350px;
+            height: 30px;
+            padding-left: 15px;
+            border:none;
+            border-bottom: 1px solid lightgray;
+            font-size: 18px;
+        }
+        label{
+            font-size: 18px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: center">
+    <h1 style="color:orangered">生成二维码</h1>
+    <form name="createForm" id="codeForm">
+        <p>
+            <label>二维码内容</label>
+            <input type="text" name="content" value="" placeholder="https://www.selfCenter.top/wordpress/"/>
+        </p>
+        <p>
+            <label>容错级别</label>
+            <select name="allow" selected>
+                <option value="L">扫描二维码区域允许出现的误差L</option>
+                <option value="L">扫描二维码区域允许出现的误差L</option>
+                <option value="L">扫描二维码区域允许出现的误差L</option>
+                <option value="L">扫描二维码区域允许出现的误差L</option>
+            </select>
+        </p>
+        <p>
+            <label>外边距</label>
+            <select name="marginSize" selected>
+                <option value="1">二维码区域向外拓白1单位</option>
+                <option value="2">二维码区域向外拓白2单位</option>
+                <option value="3">二维码区域向外拓白3单位</option>
+                <option value="4">二维码区域向外拓白4单位</option>
+                <option value="5">二维码区域向外拓白5单位</option>
+                <option value="6">二维码区域向外拓白6单位</option>
+                <option value="7">二维码区域向外拓白7单位</option>
+                <option value="8">二维码区域向外拓白8单位</option>
+                <option value="9">二维码区域向外拓白9单位</option>
+                <option value="10">二维码区域向外拓白10单位</option>
+                <option value="11">二维码区域向外拓白11单位</option>
+                <option value="12">二维码区域向外拓白12单位</option>
+                <option value="13">二维码区域向外拓白13单位</option>
+                <option value="14">二维码区域向外拓白14单位</option>
+                <option value="14">二维码区域向外拓白15单位</option>
+            </select>
+        </p>
+        <p>
+            <label>二维码大小</label>
+            <select name="shapeSize" selected>
+                <option value="1">二维码区边长1单位</option>
+                <option value="2">二维码区边长2单位</option>
+                <option value="3">二维码区边长3单位</option>
+                <option value="4">二维码区边长4单位</option>
+                <option value="5">二维码区边长5单位</option>
+                <option value="6">二维码区边长6单位</option>
+                <option value="7">二维码区边长7单位</option>
+                <option value="8">二维码区边长8单位</option>
+                <option value="9">二维码区边长9单位</option>
+                <option value="10">二维码区边长10单位</option>
+                <option value="11">二维码区边长11单位</option>
+                <option value="12">二维码区边长12单位</option>
+                <option value="13">二维码区边长13单位</option>
+                <option value="14">二维码区边长14单位</option>
+                <option value="14">二维码区边长15单位</option>
+            </select>
+        </p>
+        <p>
+            <label>logo图片</label>
+            <input type="file" value="" name="logo"/>
+        </p>
+        <P>
+            <input type="button" name="submit" value="createCode" style="background: orangered;height: 50px;border-radius: 10px"/>
+        </P>
+    </form>
+    <div id="photo"></div>
+</div>
+</body>
+<script>
+    $("input[name='submit']").click(function(){
+        var form = document.getElementById("codeForm");
+        var query = new FormData(form);
+        $.ajax({
+            url:'code.php',
+            type:'post',
+            data:query,
+            processData: false,  // 告诉jQuery不要去处理发送的数据
+            contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+            success:function(res){
+                $("#photo").empty();
+                $('#photo').append(res);
+            }
+        })
+    })
+</script>
+</html>
